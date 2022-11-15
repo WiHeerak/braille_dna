@@ -82,24 +82,44 @@ longabbarr= [[1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0], [1, 0, 0, 0, 0, 0, 1, 0, 0, 1
              [1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1],
              [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]] #7,12
 
-def list_chunk(lst, n):
-    return [lst[i:i+n] for i in range(0, len(lst), n)]
 
-file_path = "input.txt"
+file_path = "input.txt" #파일 경로
 
+#파일을 단어로 잘라서 배열로 넣기
 with open(file_path) as f:
     #lines = f.read().splitlines()
     word=f.read().split()
 print(word)
 
 a=[]
+#잘라진 단어와 longabb 비교해서 대치시키기
 for i, wordi in enumerate(word):
     for n in range(0,6):
         compare=(wordi == longabb[n%6])
         if compare==True:
             a.append(i)
-
 for index, value in enumerate(a):
+    word[value]=longabbarr[n]
+print(word)
+
+#한글 초중종성 나누기
+def korean_to_be_englished(korean_word):
+    r_lst = []
+    for w in list(korean_word.strip()):
+        ## 영어인 경우 구분해서 작성함.
+        if '가'<=w<='힣':
+            ## 588개 마다 초성이 바뀜.
+            ch1 = (ord(w) - ord('가'))//588
+            ## 중성은 총 28가지 종류
+            ch2 = ((ord(w) - ord('가')) - (588*ch1)) //28
+
+            ch3 = (ord(w) - ord('가')) - (588*ch1) - 28*ch2
+
+            r_lst.append( initial[ch1], middle[ch2], final[ch3])
+        else:
+            r_lst.append([w])
+    return r_lst
+
 
 
 
