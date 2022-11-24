@@ -93,13 +93,37 @@ def disassemble(distext):
 
 def checkshortabb(Lst):
     r_lst=[]
-    for key, value in longabb.items():
-        for i, w in enumerate(Lst):
-            if len(Lst[i])!=25:
+    r_lst1=[]
+    value=list(longabb.values())
+    key1=list(abb.keys())
+    value1=list(abb.values())
+    for w in Lst:
+        try:
+            if w=='[1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]' or w=='[1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0]' or w=='[1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]':
+                 r_lst.append(w)
+            else:
                 ab=w[0]+w[1]
                 r_lst.append(ab)
-            else:
-                break
+        except IndexError:
+            pass
+
+    for i, w in enumerate(r_lst):
+        r_lst1.append(w)
+        for key1,value1 in abb.items():
+            if w== 'ㄱㅏ' or r_lst=='ㄴㅏ' or w=='ㄷㅏ' or r_lst=='ㅁㅏ' or r_lst=='ㅂㅏ' or r_lst=='ㅅㅏ' or r_lst=='ㅈㅏ' or r_lst=='ㅌㅏ' or r_lst=='ㅍㅏ'or r_lst=='ㅎㅏ' :
+               r_lst1.append(value1)
+               r_lst1.remove(w)
+            break
+    print(r_lst1)
+
+
+   # for w in Lst:
+    #    for com in r_lst1:
+     #       if w
+
+
+
+
 
 
 
