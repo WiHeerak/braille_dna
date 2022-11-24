@@ -1,4 +1,3 @@
-import unicodedata
 
 #초성
 initial= {'ㄱ':'[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]', 'ㄲ':'[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1]',
@@ -92,12 +91,9 @@ def disassemble(distext):
 
 
 def checkshortabb(Lst):
-    orignial=Lst
+
     r_lst=[]
     r_lst1=[]
-    value=list(longabb.values())
-    key1=list(abb.keys())
-    value1=list(abb.values())
     for w in Lst:
         try:
             if w=='[1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]' or w=='[1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0]' or w=='[1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]' or w=='[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]':
@@ -109,40 +105,39 @@ def checkshortabb(Lst):
             pass
 
     for i, w1 in enumerate(r_lst):
-        r_lst1.append(w1)
-        for key1,value1 in abb.items():
-            if w1[0]== 'ㄱㅏ' or w1[0]=='ㄴㅏ' or w1[0]=='ㄷㅏ' or w1[0]=='ㅁㅏ' or w1[0]=='ㅂㅏ' or w1[0]=='ㅅㅏ' or w1[0]=='ㅈㅏ' or w1[0]=='ㅌㅏ' or w1[0]=='ㅍㅏ'or w1[0]=='ㅎㅏ' :
-               r_lst1.append(value1)
-               r_lst1.remove(w1)
-            break
+        try:
+            r_lst1.append(w1)
+            for key1,value1 in abb.items():
+                if w1[0]== 'ㄱㅏ' or w1[0]=='ㄴㅏ' or w1[0]=='ㄷㅏ' or w1[0]=='ㅁㅏ' or w1[0]=='ㅂㅏ' or w1[0]=='ㅅㅏ' or w1[0]=='ㅈㅏ' or w1[0]=='ㅌㅏ' or w1[0]=='ㅍㅏ'or w1[0]=='ㅎㅏ' :
+                    r_lst1.append(list(abb.values())[i])
+
+                    r_lst1.remove(w1)
+                elif w1[0]+w1[1]=='ㄱㅓㅅ' or w1[0]+w1[1]=='ㅇㅓㄱ' or w1[0]+w1[1]=='ㅇㅓㄴ' or w1[0]+w1[1]=='ㅇㅓㄹ' or w1[0]+w1[1]=='ㅇㅕㄴ' or w1[0]+w1[1]=='ㅇㅕㄹ' or w1[0]+w1[1]=='ㅇㅕㅇ' or w1[0]+w1[1]=='ㅇㅗㄱ' or w1[0]+w1[1]=='ㅇㅗㄴ' or  w1[0]+w1[1]=='ㅇㅗㅇ' or w1[0]+w1[1]=='ㅇㅜㄴ' or w1[0]+w1[1]=='ㅇㅜㄹ' or w1[0]+w1[1]=='ㅇㅡㄴ' or w1[0]+w1[1]=='ㅇㅡㄹ' or w1[0]+w1[1]=='ㅇㅣㄴ':
+                    r_lst1.append(value1)
+                    r_lst1.remove(w1)
+                break
+        except IndexError:
+            pass
     print(r_lst1)
+    return(r_lst1)
 
-
-
-
-   # for w in Lst:
-    #    for com in r_lst1:
-     #       if w
-
-
-
-
-
-
-
-
-
-
-
-""""
 def convert(list):
     r_lst=[]
-    for w in list:
-        for skey, svalue in special.items():
-            if w[0]==skey:
-                r_lst.append(svalue)
-            break
-        break
+    r_lst1=[]
+    try:
+        for w in list:
+            for i, w1 in enumerate(list):
+                r_lst.append(w)
+                if(len(w1))!= 36:
+                    r_lst.append([w1[0][0],w1[0][1],w1[1]])
+                break
+
+
+                        #for key2, value2 in middle.items():
+
+                        #for key3, value3 in final.items():
+    except IndexError:
+        pass
 
 
     print(r_lst)
@@ -151,8 +146,6 @@ def convert(list):
 
     return
 
-
-"""
 
 
 
@@ -173,7 +166,8 @@ for i, wordi in enumerate(word):
             a.remove(key)
 print(a)
 dis=disassemble(a)
-checkshortabb(dis)
+last=checkshortabb(dis)
+convert(last)
 
 
 
