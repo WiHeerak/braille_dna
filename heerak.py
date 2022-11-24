@@ -92,6 +92,7 @@ def disassemble(distext):
 
 
 def checkshortabb(Lst):
+    orignial=Lst
     r_lst=[]
     r_lst1=[]
     value=list(longabb.values())
@@ -103,18 +104,20 @@ def checkshortabb(Lst):
                  r_lst.append(w)
             else:
                 ab=w[0]+w[1]
-                r_lst.append(ab)
+                r_lst.append([ab,w[2]])
         except IndexError:
             pass
 
-    for i, w in enumerate(r_lst):
-        r_lst1.append(w)
+    for i, w1 in enumerate(r_lst):
+        r_lst1.append(w1)
         for key1,value1 in abb.items():
-            if w== 'ㄱㅏ' or r_lst=='ㄴㅏ' or w=='ㄷㅏ' or r_lst=='ㅁㅏ' or r_lst=='ㅂㅏ' or r_lst=='ㅅㅏ' or r_lst=='ㅈㅏ' or r_lst=='ㅌㅏ' or r_lst=='ㅍㅏ'or r_lst=='ㅎㅏ' :
+            if w1[0]== 'ㄱㅏ' or w1[0]=='ㄴㅏ' or w1[0]=='ㄷㅏ' or w1[0]=='ㅁㅏ' or w1[0]=='ㅂㅏ' or w1[0]=='ㅅㅏ' or w1[0]=='ㅈㅏ' or w1[0]=='ㅌㅏ' or w1[0]=='ㅍㅏ'or w1[0]=='ㅎㅏ' :
                r_lst1.append(value1)
-               r_lst1.remove(w)
+               r_lst1.remove(w1)
             break
     print(r_lst1)
+
+
 
 
    # for w in Lst:
